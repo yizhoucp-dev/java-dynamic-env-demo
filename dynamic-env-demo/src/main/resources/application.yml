@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: test-application
+  kafka:
+    bootstrap-servers: kafka-headless.kafka.svc.cluster.local:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        # 拦截器配置
+        interceptor:
+          classes: com.yizhoucp.de.interceptor.kafka.KafkaProducerInterceptor
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        # 拦截器配置
+        interceptor:
+          classes: com.yizhoucp.de.interceptor.kafka.KafkaRecordInterceptor
+      enable-auto-commit: true
+      group-id: 1
+
+server:
+  port: 8012
