@@ -5,6 +5,8 @@ spring:
     nacos:
       discovery:
         server-addr: nacos-headless.nacos.svc.cluster.local:8848
+        username: nacos
+        password: nacos
         namespace: public
 server:
   port: 9009
